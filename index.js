@@ -1,7 +1,16 @@
 const express = require("express");
+const conn = require("./config");
 
 const app = express();
 
-app.get("/", (req, resp) => resp.send("This is the backend of Advice API"));
+// Get Random API Route
+app.get("/", (req, resp) => {
+    // get a random ID
+    const id = Math.floor(Math.random() * 10) + 1;
+    conn.query("SELECT ADVICE FROM advices WHERE ID = ?", id, (err, data) => {
+        if(err) resp.send(err);
+        else resp.send(data);
+    })
+});
 
-app.listen(5000, ()=> console.log("server is working fine"));
+app.listen(5000);
