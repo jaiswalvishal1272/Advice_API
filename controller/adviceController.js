@@ -13,4 +13,5 @@ const getAdvice = async (req, resp) => {
     })
 };
 
+// Export getAdvice controller through module
 module.exports = getAdvice;
